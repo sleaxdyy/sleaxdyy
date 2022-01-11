@@ -41,7 +41,7 @@ vi /etc/elasticsearch/elasticsearch.yml
 #network.host: 192.168.5.82
 ```
 - Cấu hình ES là 1 single node
-``` 
+```console
 discovery.type: single-node 
 ```
 4. Khởi động và bật cho phép ES chạy khi khởi động hệ thống
