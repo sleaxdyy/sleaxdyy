@@ -66,7 +66,7 @@ yum install kibana
 ```
 6. Cấu hình Kibana
 ```console
-vim /etc/kibana/kibana.yml
+vi /etc/kibana/kibana.yml
 ```
 7. Bỏ ghi chú 3 dòng dưới và thay địa chỉ IP giống với ES
 ```console
