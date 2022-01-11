@@ -15,16 +15,6 @@
 ***Centos cài fluentd td-agent gửi logs: 192.168.5.88***
 ### **CÀI ĐẶT ELASTICSEARCH:**
 1. Tạo repo Elasticsearch Stack trên Centos 7:
-cat > /etc/yum.repos.d/elasticstack.repo << EOL 
-[elasticstack] 
-name=Elastic repository for 7.x packages 
-baseurl=https://artifacts.elastic.co/packages/7.x/yum 
-gpgcheck=1 
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch 
-enabled=1 
-autorefresh=1 
-type=rpm-md 
-EOL
 ```console 
 cat > /etc/yum.repos.d/elasticstack.repo << EOL 
 [elasticstack] 
@@ -46,7 +36,7 @@ yum install elasticsearch
 vi /etc/elasticsearch/elasticsearch.yml
 ```
 - Bỏ ghi chú và thay bằng địa chỉ IP của máy Centos7 đang sử dụng
-```
+```console
 #network.host: 192.168.0.1
 #network.host: 192.168.5.82
 ```
