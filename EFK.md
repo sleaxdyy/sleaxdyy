@@ -69,12 +69,12 @@ yum install kibana
 vim /etc/kibana/kibana.yml
 ```
 7. Bỏ ghi chú 3 dòng dưới và thay địa chỉ IP giống với ES
-```
+```console
 #server.port: 5601
 #server.host: "localhost"
 #elasticsearch.hosts: ["http://localhost:9200"]
 ```
-```
+```console
 server.port: 5601
 server.host: "192.168.5.82"
 elasticsearch.hosts: ["http://192.168.5.82:9200"]
