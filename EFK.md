@@ -159,7 +159,7 @@ recover_wait 10s
 hard_timeout 60s 
 <server> 
 name log_mgr 
-host 192.168.5.88 
+host 192.168.5.8822 
 port 24224 
 weight 60 
 </server> 
@@ -195,7 +195,7 @@ tcpdump -i enp0s8 -nn dst port 24224
 22.	Sau đó, hãy kiểm tra xem chỉ mục Elasticsearch của bạn đã được tạo chưa
 (logstash_prefix [Chỉ mục])
 ```console
-curl -XGET http://192.168.5.88:9200/_cat/indices?v
+curl -XGET http://192.168.5.82:9200/_cat/indices?v
 ```
 ## **TẠO CHỈ MỤC FLUENT KIBANA**
 23.	Mở trình duyệt và truy cập vào: http://192.168.5.82:5601
