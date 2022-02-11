@@ -87,7 +87,7 @@ systemctl start kibana
 9. Mở Kibana Port trên FirewallD
 ```console
 firewall-cmd --add-port=5601/tcp --permanent
-firewall-cmd –reload
+firewall-cmd –-reload
 ```
 10. Truy cập giao diện Kibana bằng trình duyệt : 
 http://192.168.5.82:5601
