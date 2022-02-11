@@ -108,7 +108,9 @@ systemctl start td-agent
 td-agent-gem install fluent-plugin-elasticsearch
 ```
 14.	Cài đặt secure_forward kết nối đầu ra Fluentd gửi dữ liệu an toàn
+```console
 td-agent-gem install fluent-plugin-secure-forward
+```
 
 ### **CẤU HÌNH FLUENTD THU THẬP LOGS(192.168.5.82)**
 ```console
