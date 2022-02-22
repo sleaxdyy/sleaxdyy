@@ -10,7 +10,7 @@ sudo htpasswd -c /etc/nginx/htpasswd.users user1
 ```
 3. Tạo các cặp mật khẩu người dùng bổ sung. Bỏ qua -c vì tệp đã tồn tại:
 ```console
-sudo htpasswd /etc/apache2/.htpasswd user2
+sudo htpasswd /etc/apache2/htpasswd.users user2
 ```
 - Nhấn Enter và nhập mật khẩu cho user1 tại lời nhắc.
 4. Tiếp theo, chúng tôi sẽ tạo tệp cấu hình nginx:
@@ -84,7 +84,7 @@ server {
 
 - Sử dụng trong khối : ```location```
 - Chỉ thị satisfy định nghĩa việc khách hàng được yêu cầu đáp ứng tất cả các điều kiện truy cập (satisfy all) hoặc ít nhất 1 điều kiện (satisfy any) để là khách hàng hợp lệ:
-```connsole
+```console
         location /admin/ {
           allow 192.168.1.0/24;
           deny all;
