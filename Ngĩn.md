@@ -10,7 +10,7 @@ sudo htpasswd -c /etc/nginx/htpasswd.users user1
 ```
 3. Tạo các cặp mật khẩu người dùng bổ sung. Bỏ qua -c vì tệp đã tồn tại:
 ```console
-sudo htpasswd /etc/apache2/htpasswd.users user2
+sudo htpasswd /etc/nginx/htpasswd.users user2
 ```
 - Nhấn Enter và nhập mật khẩu cho user1 tại lời nhắc.
 4. Tiếp theo, chúng tôi sẽ tạo tệp cấu hình nginx:
