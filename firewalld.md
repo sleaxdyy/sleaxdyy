@@ -91,8 +91,9 @@ firewall-cmd --zone=public --list-ports
 ### **3. Thiết lập service**
 Xác định các services trên hệ thống :
 
-# firewall-cmd --get-services
-
+```console
+firewall-cmd --get-services
+```
 - Thông tin về services được lưu trữ tại /usr/lib/firewalld/services
 
 - Thiết lập cho phép services trên firewalld , sử dụng --add-service :
