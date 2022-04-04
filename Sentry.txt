@@ -1,0 +1,19 @@
+sudo yum update
+
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
+
+yum-config-manager --enable docker-ce-nightly
+
+sudo yum update -y
+
+sudo yum install docker-ce docker-ce-cli containerd.io -y
+
+sudo yum install docker-ce-18.09.1 docker-ce-cli=18.09.1 containerd.io -y
+
+yum install wget
+
+wget https://github.com/getsentry/self-hosted/archive/refs/tags/22.2.0.tar.gz
+
+tar -xvf 22.2.0.tar.gz
+
+docker-compose up -d

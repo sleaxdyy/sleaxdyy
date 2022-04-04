@@ -1,0 +1,29 @@
+curl -i -X GET https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
+curl -i -X GET "https://api.telegram.org/bot<BOT_TOKEN>/sendMessage?chat_id=<CHAT_ID>&text=hello"
+
+
+pipeline {
+    
+    agent any
+    stages {
+        stage('Build') {
+            steps{
+                git url: 'https://github.com/sleaxdyy/jenkinsnew.git'
+            }
+            
+        }
+    }
+    post{
+        success{
+            sh 'curl -iX GET "https://api.telegram.org/bot5104002837:AAFYgwvNE3McBYEXJdSVMez271qPqygVncQ/sendMessage?chat_id=-761242885&parse_mode=HTML&text=<b>Project</b> : jenkinsnew <b>Branch</b>: master <b>Build </b> : SUCCESS"'
+        }
+    
+        failure{
+            sh 'curl -iX GET "https://api.telegram.org/bot5104002837:AAFYgwvNE3McBYEXJdSVMez271qPqygVncQ/sendMessage?chat_id=-761242885&parse_mode=HTML&text=<b>Project</b> : jenkinsnew <b>Branch</b>: master <b>Build </b> : FAILURE"'
+        }
+        
+    }
+}
+
+
+

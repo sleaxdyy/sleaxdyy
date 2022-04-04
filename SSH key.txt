@@ -1,0 +1,9 @@
+ssh key:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJOpx1fmnlbfeGyX76YeGuAj7PPvL2DzFg26hmmMnh0MVOgLFAirbmM0PqvXmqQzStuaGf0HN7pZrBo4mm6UnP2UpAQ2AU28TPIq9oIyaveYNlNEXziyeR25rqa4DCnZB+iwXyv+UF16Ib26l8WS5kx1Pc57JDFKZgAQWkZ3BbIRgYnj9YQinzA08e3vfziMfXGnnB2yNfOuePXDFhq0Zo2K80WNd8VFVri8wly7qrQ87vLyrpp9rpMzxwxRKDPPUFn8gxD+GTzH9fa2fNH0RauwSrpfECjexI6ga7qSyC/9oWFj2NRY8HpV26NesHUQvm1esBVQ4FnMlrF2ZV5Jrl root@quang
+its monitor: ssh root@171.244.139.240 -p 34567
+smart bot: ssh root@103.229.42.145 -p 34567
+ gitkey: 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
+ quangjenkins token: 5104002837:AAFYgwvNE3McBYEXJdSVMez271qPqygVncQ
+id group test: -761242885
+
+https://api.telegram.org/bot5104002837:AAFYgwvNE3McBYEXJdSVMez271qPqygVncQ/sendMessage?chat_id=-761242885&text=<noi_dung>

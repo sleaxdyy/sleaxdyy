@@ -1,0 +1,8 @@
+SyntaxError: future feature annotations is not defined #14
+Two solutions:
+
+1.Try Python>=3.7
+2.For Python<=3.6, you need:
+git clone -b legacy_py3.6 https://github.com/QUVA-Lab/e2cnn.git
+cd e2cnn
+python setup.py install

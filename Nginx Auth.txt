@@ -1,0 +1,16 @@
+server {
+    listen       8000;
+    server_name  example.com;
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/htpasswd.users;
+    
+    location / {
+            proxy_pass http://192.168.5.115:5601;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+
+
+ssh root@171.244.139.240 -p 34567

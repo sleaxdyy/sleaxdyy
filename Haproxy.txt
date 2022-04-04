@@ -1,0 +1,58 @@
+INSTALL
+***
+yum install haproxy -y
+
+systemctl start httpd
+
+systemctl enable httpd
+
+sudo yum install wget socat -y
+
+echo 'net.ipv4.ip_nonlocal_bind = 1' >> /etc/sysctl.conf
+***
+CONFIG
+***
+vi /etc/haproxy/haproxy.cfg
+global
+   log /dev/log local0
+   log /dev/log local1 notice
+   chroot /var/lib/haproxy
+   stats socket /var/run/haproxy.sock mode 600 expose-fd listeners level admin
+   stats timeout 30s
+   server-state-file /var/lib/haproxy/server-state
+   daemon
+
+defaults
+   log global
+   mode http
+   option httplog
+   option dontlognull
+   timeout connect 5000
+   timeout client 50000
+   timeout server 50000
+
+frontend http_front
+   bind *:8080
+   stats uri /stats
+   default_backend http_back
+
+backend http_back
+   balance roundrobin
+   server web1 192.168.30.138:8080 check
+   server web2 192.168.30.139:80 check
+***
+CONTROL
+socat stdio /var/run/haproxy.sock
+prompt
+
+> help
+> enable server web-backend/web1
+>
+***
+yum install httpd -y
+
+sed -i "s/Listen 80/Listen 10.10.11.89:8080/g" /etc/httpd/conf/httpd.conf
+
+cat /etc/httpd/conf/httpd.conf | grep 'Listen 80'
+
+echo '<h1>WEB SERVER TEST 1</h1>' > /var/www/html/index.html
