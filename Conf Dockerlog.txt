@@ -30,3 +30,6 @@ docker exec -u 0 -it nginx bash
 rm -rf /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 date
+
+Cài đặt nginx với timezone +7
+docker run -d -p 80:80 --name nginx -e "TZ=Asia/Ho_Chi_Minh" nginx
