@@ -23,6 +23,7 @@ ENTRYPOINT ["/usr/local/bundle/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
   path /var/lib/docker/containers/*/*-json.log
   pos_file /var/log/fluentd-docker.pos
   time_format %Y-%m-%dT%H:%M:%S
+  timezone +07:00
   tag docker.*
   format json
 </source>
@@ -71,3 +72,20 @@ docker run -d -p 5601:5601 --name kibana kibana:8.1.1
 4. Tìm từ khóa `Data Views` trên thanh tìm kiếm
 5. Create data view và tìm chỉ mục theo tên đã đặt
 6. Chọn tab Discover để xem logs
+## - Thay đổi múi giờ container
+1. Truy cập vào container cần thay đổi
+```console
+docker exec -u 0 -it nginx bash
+```
+2. Xóa múi giờ đã được đặt từ trước
+```console
+rm -rf /etc/localtime
+```
+3. Đặt múi giờ cho container
+```console
+ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+```
+4. Kiểm tra
+```console
+date
+```
