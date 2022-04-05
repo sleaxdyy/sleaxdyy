@@ -67,11 +67,16 @@ docker run -d -p 5601:5601 --name kibana kibana:8.1.1
 ```
 ## - Kiểm tra 
 1. Truy cập web theo đường dẫn `http://<your-ip>:5601`
-2. 
+2. Chọn Config Manually
 3. Dán địa chỉ kết nối với Elasticsearch `http://<your-ip>:9200`
-4. Tìm từ khóa `Data Views` trên thanh tìm kiếm
-5. Create data view và tìm chỉ mục theo tên đã đặt
-6. Chọn tab Discover để xem logs
+4. Truy cập vào container Kibana để lấy `kibana-verification-code`
+```console
+docker exec -it kibana bash
+bin/kibana-verification-code
+```
+5. Tìm từ khóa `Data Views` trên thanh tìm kiếm
+6. Create data view và tìm chỉ mục theo tên đã đặt
+7. Chọn tab Discover để xem logs
 ## - Thay đổi múi giờ container
 1. Truy cập vào container cần thay đổi
 ```console
