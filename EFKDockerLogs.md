@@ -60,6 +60,10 @@ sudo sysctl -w vm.max_map_count=262144
 ```console
 docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.1.1
 ```
+3. Tạo container Fluentd
+```console
+docker run -d --link es:es -v /var/lib/docker/containers:/var/lib/docker/containers fluentd-es
+```
 ## - Cài đặt Kibana với Docker
 - Thực hiện lệnh tải xuống Image và chạy Container
 ```console
