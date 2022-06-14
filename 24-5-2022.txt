@@ -1,0 +1,48 @@
+1. API GW + nextrunk + smartbot + dịch vụ team T1
+docker, linux, redis, kafka, mongodb, mysql
+python, jenkins
+
+triển khai như nào
+các dịch vụ triển khai đi kèm
+dịch vụ mới ?
+
+2. EMAS
+
+linux, haproxy, nginx, keepalived, mysql, minio, redis, elasticsearch ...
+docker
+k8s
+ELK
+
+3. Callbot
+k8s -> hiểu
+
+phonegw(gateway)
+
+bản tin sip
+
+đi triển khai các bank, nhà mạng
+contact point và nắm dịch vụ chung
+nắm phần phonegw
+sip trunking
+
+4. Internet call
+portsip
+triển khai các bank hoặc các cty lớn
+docker
+linux
+cần hiểu mô hình triển khai
+seaweedfs
+5. Voicebio
+
+docker, mysl, redis
+nắm cấu hình cách triển khai
+monitor, alert, log
+quy trình làm việc
+
+1. thống nhất nội dung
+2. chốt phương án
+3.  chuẩn bị hạ tầng (của đối tác hoặc của mình)
+4. mở kết nối thông kết nối
+5. triển khai dịch vụ
+6. kiểm tra lại toàn bộ dịch vụ
+7. bàn giao
