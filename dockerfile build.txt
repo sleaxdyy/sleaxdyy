@@ -1,0 +1,12 @@
+FROM python:3.8-slim
+COPY api_gateway/requirements.txt .
+
+RUN pip install --user -r requirements.txt
+
+WORKDIR /code
+
+COPY api_gateway api_gateway
+
+ENV PATH=/root/.local:$PATH
+RUN mkdir -p file
+CMD [ "python3", "api_gateway/main.py" ]
