@@ -1,0 +1,154 @@
+version: "3.9"
+services:
+  admin-web:
+    build:
+      context: .
+      dockerfile: admin_web/Dockerfile
+    restart: unless-stopped
+    container_name: smartsale-admin-web
+    image: smartsale-admin-web
+    ports:
+      - "9196:9196"
+    networks:
+      - smartsale-network
+
+  admin-web-celery:
+    build:
+      context: .
+      dockerfile: admin_web/Dockerfilecelery
+    restart: unless-stopped
+    container_name: smartsale-admin-web-celery
+    image: smartsale-admin-web-celery
+    networks:
+      - smartsale-network
+
+  admin-web-beat:
+    build:
+      context: .
+      dockerfile: admin_web/Dockerfilebeat
+    restart: unless-stopped
+    container_name: smartsale-admin-web-beat
+    image: smartsale-admin-web-beat
+    networks:
+      - smartsale-network
+
+  admin-nextrunk:
+    build:
+      context: .
+      dockerfile: admin_web/Dockerfileadminnextrunk
+    restart: unless-stopped
+    container_name: smartsale-admin-nextrunk
+    image: smartsale-admin-nextrunk
+    ports:
+      - "9251:9251"
+    networks:
+      - smartsale-network
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api_gateway/Dockerfile
+    restart: unless-stopped
+    container_name: smartsale-api-gateway
+    image: smartsale-api-gateway
+    ports:
+      - "8000:8000"
+    networks:
+      - smartsale-network
+
+  client-web-vietinbank:
+    build:
+      context: .
+      dockerfile: client_web_vietinbank/Dockerfile
+    restart: unless-stopped
+    container_name: smartsale-client-web-vietinbank
+    image: smartsale-client-web-vietinbank
+    ports:
+      - "9199:9199"
+    networks:
+      - smartsale-network
+
+  client-web:
+    build:
+      context: .
+      dockerfile: client_web/Dockerfile
+    restart: unless-stopped
+    container_name: smartsale-client-web
+    image: smartsale-client-web
+    ports:
+      - "9198:9198"
+    networks:
+      - smartsale-network
+
+  api_gw_client_web:
+    build:
+      context: .
+      dockerfile: api_gw_client_web/Dockerfile
+    restart: unless-stopped
+    container_name: smartsale-api_gw_client_web
+    image: smartsale-client-api_gw_client_web
+    ports:
+      - "9195:9195"
+    networks:
+      - smartsale-network
+
+  mongo:
+    image: mongo:4.4
+    container_name: smartsale-mongo
+    restart: unless-stopped
+    volumes:
+      - /srv/smartsale/mongo-data:/data/db
+    #ports:
+    #  - "28018:27017"
+    networks:
+      - smartsale-network
+      - db-network
+
+  mongo-express:
+    container_name: mongo-express
+    restart: unless-stopped
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo/api_platform
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=Trm5DwecyBN24a
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
+    networks:
+      - smartsale-network
+
+  redis:
+    image: "redis:alpine"
+    container_name: smartsale-redis
+    restart: unless-stopped
+    volumes:
+      - /srv/smartsale/redis-data:/data
+    networks:
+      - smartsale-network
+      - db-network
+
+  mysql:
+    image: mysql
+    container_name: smartsale-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: sXDoqqh22A7vfy
+      MYSQL_USER: smart_sale
+      MYSQL_PASSWORD: W4u5xpFfuEnV9S
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "3306:3306"
+    volumes:
+      - /srv/smartsale/mysql-data:/data
+    networks:
+      - smartsale-network
+
+networks:
+  smartsale-network:
+    driver: bridge
+    enable_ipv6: false
+  db-network:
+    driver: bridge
+    enable_ipv6: false
