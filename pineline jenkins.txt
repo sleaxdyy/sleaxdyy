@@ -1,0 +1,78 @@
+@Library('notify-job-result')_
+pipeline {
+    agent any
+    stages{
+        stage( 'Clone' ) {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'dangquang-github',
+                    url: 'https://github.com/thomasvn89/thugiong_omega.git'
+            }
+        }
+        stage('Pull') { // for display purposes
+            steps{
+                sh '''
+                    ssh -p 2212 root@125.212.225.71 << EOF
+                        cd /root/code/thugiong_omega
+                        git pull --rebase
+                        exit
+                    EOF
+                '''
+            }
+        }
+        stage('Build ') {
+            steps{
+                sh '''
+                    ssh -p 2212 root@125.212.225.71 << EOF
+                        cd /root/code/thugiong_omega
+                        docker-compose up --build -d
+                        docker image prune -f
+                        docker container prune -f
+                        exit
+                    EOF
+                '''
+            }
+        }
+        // stage('Clean') {
+        //     steps{
+        //         sh '''
+        //             ssh root@171.244.57.184 << EOF
+        //                 docker image prune -f
+        //                 docker container prune -f
+        //                 exit
+        //             EOF
+        //         '''
+        //     }
+        // }
+    }
+
+    post {
+        // changed {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: changed" )
+        // }
+        // fixed {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: fixed")
+        // }
+        // regression {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: regression")
+        // }
+        // aborted {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: aborted")
+        // }
+        failure {
+          sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: failure")
+        }
+        success {
+          sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: success")
+        }
+        // unstable {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: unstable")
+        // }
+        // unsuccessful {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: unsuccessful")
+        // }
+        // cleanup {
+        //   sendTelegram("Log: ${BUILD_URL}console\nJob: ${JOB_NAME}\nBuild # ${BUILD_NUMBER}\nStatus: cleanup")
+        // }
+  }
+}
