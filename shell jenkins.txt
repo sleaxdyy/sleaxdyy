@@ -1,9 +1,0 @@
-ssh -p 2212 root@125.212.225.71 << EOF
-cd /root/code/API/api_gateway
-git pull origin master
-cd /root/code/API
-docker-compose up --build -d api-gateway
-docker image prune -f
-docker container prune -f
-exit
-EOF
